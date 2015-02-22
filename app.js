@@ -1,7 +1,7 @@
 'use strict';
 
 var _ = require('lodash');
-var _config = require('./twitter.json');
+var _config = require('./twitter.json') || [];
 var Twitter = require('twitter');
 var countries = require('./countries.json');
 
