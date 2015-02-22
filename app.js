@@ -3,6 +3,7 @@
 var _ = require('lodash');
 var Twitter = require('twitter');
 var countries = require('./countries.json');
+var app = require('express')();
 
 var redisConfig = {
     host: '192.168.59.103',
@@ -72,4 +73,14 @@ twitter.stream('statuses/filter', {track: countries.join(',')}, function(stream)
     stream.on('error', function(error) {
         throw error;
     });
+});
+
+app.set('port', (process.env.PORT || 5000));
+
+app.all('/subscribe/raw', function(req, res){
+    res.send('Hello World!');
+});
+
+app.listen(app.get('port'), function() {
+    console.log('Node app is running at localhost:' + app.get('port'));
 });
