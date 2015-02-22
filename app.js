@@ -75,9 +75,10 @@ twitter.stream('statuses/filter', {track: countries.join(',')}, function(stream)
     });
 });
 
+// Bind web port for heroku not to crash
 app.set('port', (process.env.PORT || 5000));
 
-app.all('/subscribe/raw', function(req, res){
+app.all('/', function(req, res){
     res.send('Hello World!');
 });
 
