@@ -1,7 +1,6 @@
 'use strict';
 
 var _ = require('lodash');
-var _config = require('./twitter.json') || [];
 var Twitter = require('twitter');
 var countries = require('./countries.json');
 
@@ -26,10 +25,10 @@ if(url.hostname !== null) {
 }
 
 var twitter = new Twitter({
-    consumer_key: process.env.twitter_consumer_key || _config[0],
-    consumer_secret: process.env.twitter_consumer_secret || _config[1],
-    access_token_key: process.env.twitter_access_token_key || _config[2],
-    access_token_secret: process.env.twitter_access_token_secret || _config[3]
+    consumer_key: process.env.twitter_consumer_key || require('./twitter.json')[0],
+    consumer_secret: process.env.twitter_consumer_secret || require('./twitter.json')[1],
+    access_token_key: process.env.twitter_access_token_key || require('./twitter.json')[2],
+    access_token_secret: process.env.twitter_access_token_secret || require('./twitter.json')[3]
 });
 
 var regExp = new RegExp('(?:' + (countries.join('|')) + ')', 'g');
